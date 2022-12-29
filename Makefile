@@ -6,3 +6,9 @@ make lint: # launch npx eslint
 
 make say-hello: # prints hello world in bash
 	echo "Hello, world!"
+
+make test: # starts tests
+	npm test
+
+make test-coverage: #tests coverage
+	npm test -- --coverage 
