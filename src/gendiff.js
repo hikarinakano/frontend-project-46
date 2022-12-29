@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-import path from 'path';
 
 
 export default (filepath1, filepath2) => {
