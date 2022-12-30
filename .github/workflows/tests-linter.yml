@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v3
       # run – произвольная bash-команда
       - run: make install
       - run: make lint
@@ -23,8 +24,8 @@ jobs:
       # https://github.com/paambaati/codeclimate-action
         uses: paambaati/codeclimate-action@v3.0.0
       # Add Code Climate secret key
-      env:
-         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: make test-coverage
-        debug: true
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
