@@ -4,16 +4,15 @@ on:
   - push
   - pull request
 
+env:
+  CI: true
+
 jobs:
-  # build – произвольно выбранное имя задания
-  # их может быть больше одного
   build:
     # операционная система для работы воркфлоу
     runs-on: ubuntu-latest
-    
+
     steps: 
-      # список шагов, которые надо выполнить
-      # экшен, выполняет какую-то задачу
       - uses: actions/checkout@v2
       # run – произвольная bash-команда
       - run: make install
@@ -22,8 +21,8 @@ jobs:
       - name: Test & publish code coverage
       # Publish code coverage on Code Climate
       # https://github.com/paambaati/codeclimate-action
-      uses: paambaati/codeclimate-action@v3.0.0
-      # # Add Code Climate secret key
+        uses: paambaati/codeclimate-action@v3.0.0
+      # Add Code Climate secret key
       env:
          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
