@@ -2,8 +2,8 @@ gendiff: # launches help info for gendiff file
 	node bin/gendiff.js -h
 
 make install:
-	npm install
-	
+	npm ci
+
 make lint: # launch npx eslint
 	npx eslint .	
 
