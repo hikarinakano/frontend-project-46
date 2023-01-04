@@ -9,3 +9,6 @@
 
 <h3>asciinema first demo of genDiff</h3>
 <a href="https://asciinema.org/a/Mwg7oU5E9d37cgq5dMwZnYgjS" target="_blank"><img src="https://asciinema.org/a/Mwg7oU5E9d37cgq5dMwZnYgjS.svg" /></a>
+
+<h3> asciinema second demo comparing two flat .yml files</h3>
+<a href="https://asciinema.org/a/rATX8McdTj2knhGr7kyjyMI4s" target="_blank"><img src="https://asciinema.org/a/rATX8McdTj2knhGr7kyjyMI4s.svg" /></a>
