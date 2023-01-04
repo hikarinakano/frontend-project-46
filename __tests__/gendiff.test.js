@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import gendiff from '../src/gendiff';
 
-let getFixturePath, readFile, json1, json2, yaml1, yaml2, data1, data2;
+let getFixturePath, readFile, json1, json2, data1, data2;
 beforeAll(() => {
   getFixturePath = (filename) => path.join('__tests__', '..', '__fixtures__', filename);
    readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');

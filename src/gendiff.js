@@ -40,4 +40,4 @@ function genDiff(parsedData1, parsedData2) {
     }
   }
   return result.join('\n');
-};
+}
