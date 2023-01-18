@@ -1,10 +1,9 @@
 import { test, expect, beforeAll } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
 import parse from '../src/parse';
 
-let getFixturePath, readFile, data1, data2;
+let getFixturePath, readFile, data1;
 beforeAll(() => {
   getFixturePath = (filename) => path.join('__tests__', '..', '__fixtures__', filename);
   readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
