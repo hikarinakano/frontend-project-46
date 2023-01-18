@@ -12,3 +12,6 @@
 
 <h3> asciinema second demo comparing two flat .yml files</h3>
 <a href="https://asciinema.org/a/rATX8McdTj2knhGr7kyjyMI4s" target="_blank"><img src="https://asciinema.org/a/rATX8McdTj2knhGr7kyjyMI4s.svg" /></a>
+
+<h3> asciinema demo working with big tree structured files with -f flag and without</h3>
+<a href="https://asciinema.org/a/TGg4J1p8aWi1Coq0z3Ju8W0km" target="_blank"><img src="https://asciinema.org/a/TGg4J1p8aWi1Coq0z3Ju8W0km.svg" /></a>
