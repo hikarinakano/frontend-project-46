@@ -1,43 +1,29 @@
 
-//import parser from 'src/parser.js';
-
-//parser(filepath1, filepath2);
-
-import yaml from 'js-yaml';
-import fs from 'fs';
+import parse from './parse.js';
+import _ from 'lodash';
 
 
-export default (filepath1, filepath2) => {
-  const data1 = fs.readFileSync(filepath1, 'utf-8');
-  const data2 = fs.readFileSync(filepath2, 'utf-8');
-  const extension = data1.split('.')[1];
-  let parsedData1, parsedData2;
-  if (extension === 'yml' || extension === 'yaml') {
-    parsedData1 = yaml.load(data1, 'utf8');
-    parsedData2 = yaml.load(data2, 'utf8');
+function genDiff(data1, data2) {
+  if (!(data2 instanceof Object)) {
+    return data2;
   }
-  else if (extension === 'json') {
-    parsedData1 = JSON.parse(data1);
-    parsedData2 = JSON.parse(data2);
-  }
-  console.log(yaml.load(data1, 'utf8'))
-  return genDiff(parsedData1, parsedData2);
-}
-
-function genDiff(parsedData1, parsedData2) {
-  const keys = Object.keys({ ...parsedData1, ...parsedData2 }).sort(); // https://youtu.be/vkUTX1hruF8?t=929
+  const keys = Object.keys({ ...data1, ...data2 }).sort();
   const result = [];
   for (const key of keys) {
-    if (!Object.hasOwn(parsedData1, key)) {
-      result.push(`  + ${key}: ${parsedData2[key]}`);
-    } else if (!Object.hasOwn(parsedData2, key)) {
-      result.push(`  - ${key}: ${parsedData1[key]}`);
-    } else if (parsedData1[key] !== parsedData2[key]) {
-      result.push(`  - ${key}: ${parsedData1[key]}`);
-      result.push(`  + ${key}: ${parsedData2[key]}`);
-    } else {
-      result.push(`    ${key}: ${parsedData2[key]}`);
+    const isVal1Object = data1[key] instanceof Object;
+    const isVal2Object = data2[key] instanceof Object;
+    if (_.has(data1, key) && _.has(data2, key) && data1[key] === data2[key] || isVal1Object && isVal2Object) {
+      result.push({ 'status': 'unchanged', key: key, value: genDiff(data1[key], data2[key]) })
+      continue;
+    }
+    if (_.has(data1, key)) {
+      result.push({ 'status': 'deleted', key: key, value: genDiff(data1[key], data1[key]) })
+    }
+    if (_.has(data2, key)) {
+      result.push({ 'status': 'added', key: key, value: genDiff(data2[key], data2[key]) })
     }
   }
-  return result.join('\n');
+  return result;
 }
+export default genDiff;
+
