@@ -1,5 +1,3 @@
-
-import parse from './parse.js';
 import _ from 'lodash';
 
 
