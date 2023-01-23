@@ -1,15 +1,12 @@
-import getFormatFunction from "../formatters";
 import { test, expect, beforeAll } from "@jest/globals";
 import fs from "fs";
 import path from "path";
 import genDiff from "../src/gendiff";
-import parse from "../src/parse";
 
-let getFixturePath, readFile, parseReadFile, filepath1, filepath2;
+let getFixturePath, readFile, filepath1, filepath2;
 beforeAll(() => {
   getFixturePath = (filename) => path.join("__fixtures__", filename);
   readFile = (filename) => fs.readFileSync(getFixturePath(filename), "utf-8");
-  parseReadFile = (filename) => parse(readFile(filename), filename);
 })
 
 test("stylish format (default) json test", () => {
