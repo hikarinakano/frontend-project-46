@@ -1,0 +1,168 @@
+[
+  {
+    "status": "unchanged",
+    "key": "common",
+    "value": [
+      {
+        "status": "added",
+        "key": "follow",
+        "value": false
+      },
+      {
+        "status": "unchanged",
+        "key": "setting1",
+        "value": "Value 1"
+      },
+      {
+        "status": "deleted",
+        "key": "setting2",
+        "value": 200
+      },
+      {
+        "status": "deleted",
+        "key": "setting3",
+        "value": true
+      },
+      {
+        "status": "added",
+        "key": "setting3",
+        "value": null
+      },
+      {
+        "status": "added",
+        "key": "setting4",
+        "value": "blah blah"
+      },
+      {
+        "status": "added",
+        "key": "setting5",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "key5",
+            "value": "value5"
+          }
+        ]
+      },
+      {
+        "status": "unchanged",
+        "key": "setting6",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "doge",
+            "value": [
+              {
+                "status": "deleted",
+                "key": "wow",
+                "value": ""
+              },
+              {
+                "status": "added",
+                "key": "wow",
+                "value": "so much"
+              }
+            ]
+          },
+          {
+            "status": "unchanged",
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "status": "added",
+            "key": "ops",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "status": "unchanged",
+    "key": "group1",
+    "value": [
+      {
+        "status": "deleted",
+        "key": "baz",
+        "value": "bas"
+      },
+      {
+        "status": "added",
+        "key": "baz",
+        "value": "bars"
+      },
+      {
+        "status": "unchanged",
+        "key": "foo",
+        "value": "bar"
+      },
+      {
+        "status": "deleted",
+        "key": "nest",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "key",
+            "value": "value"
+          }
+        ]
+      },
+      {
+        "status": "added",
+        "key": "nest",
+        "value": "str"
+      }
+    ]
+  },
+  {
+    "status": "deleted",
+    "key": "group2",
+    "value": [
+      {
+        "status": "unchanged",
+        "key": "abc",
+        "value": 12345
+      },
+      {
+        "status": "unchanged",
+        "key": "deep",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "id",
+            "value": 45
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "status": "added",
+    "key": "group3",
+    "value": [
+      {
+        "status": "unchanged",
+        "key": "deep",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "id",
+            "value": [
+              {
+                "status": "unchanged",
+                "key": "number",
+                "value": 45
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "status": "unchanged",
+        "key": "fee",
+        "value": 100500
+      }
+    ]
+  }
+]
