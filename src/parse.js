@@ -1,11 +1,12 @@
 import yaml from 'js-yaml';
+import path from 'path';
 
 function parse(data, filepath) {
-  const extension = filepath.split('.')[1];
-  if (extension === 'json') {
+  const extension = path.extname(filepath);
+  if (extension === '.json') {
     return JSON.parse(data)
   }
-  if (extension === 'yaml' || extension === 'yml') {
+  if (extension === '.yaml' || extension === '.yml') {
     return yaml.load(data, 'utf8');
   }
   else {
