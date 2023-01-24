@@ -1,6 +1,6 @@
 
 function stylish(data) {
-  return doStylish(data).join('');
+  return doStylish(data).join('').trim();
 }
 
 function doStylish(data, indent = '') {

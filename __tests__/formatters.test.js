@@ -24,7 +24,7 @@ test("stylish format (default) yml test", () => {
   filepath2 = getFixturePath("file2.yml");
   const result = readFile("formatted.txt");
 
-  expect((genDiff(filepath1, filepath2, { "format": "aa" }))).toEqual(result);
+  expect((genDiff(filepath1, filepath2, "aa" ))).toEqual(result);
 })
 
 test("plain format json test", () => {
@@ -33,7 +33,7 @@ test("plain format json test", () => {
   filepath2 = getFixturePath("file2.json");
   const result = readFile("plain.txt");
 
-  expect((genDiff(filepath1, filepath2, { "format": "plain" }))).toEqual(result);
+  expect((genDiff(filepath1, filepath2, "plain" ))).toEqual(result);
 })
 
 test("plain format yml test", () => {
@@ -42,7 +42,7 @@ test("plain format yml test", () => {
   filepath2 = getFixturePath("file2.yml");
   const result = readFile("plain.txt");
 
-  expect((genDiff(filepath1, filepath2, { "format": "plain" }))).toEqual(result);
+  expect((genDiff(filepath1, filepath2, "plain" ))).toEqual(result);
 })
 
 test("json format json test", () => {
@@ -50,12 +50,12 @@ test("json format json test", () => {
   filepath2 = getFixturePath("file2.json");
   const result = readFile("json_format.txt");
 
-  expect((genDiff(filepath1, filepath2, { "format": "json" }))).toEqual(result);
+  expect((genDiff(filepath1, filepath2, "json"))).toEqual(result);
 })
 test("json format yml test", () => {
 
   filepath1 = getFixturePath("file1.yml");
   filepath2 = getFixturePath("file2.yml");
   const result = readFile("json_format.txt");
-  expect((genDiff(filepath1, filepath2, { "format": "json" }))).toEqual(result);
+  expect((genDiff(filepath1, filepath2, "json"))).toEqual(result);
 })
