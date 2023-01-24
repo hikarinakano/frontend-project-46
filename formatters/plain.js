@@ -33,7 +33,7 @@ function plainFormat(data, parentKey = []) {
       result = result.concat(plainFormat(elem['value'], fullKey))
     }
   }
-  return result.join('');
+  return result.join('').trim();
 }
 
 
