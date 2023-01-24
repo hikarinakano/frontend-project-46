@@ -3,10 +3,10 @@ import plainFormat from "./plain.js";
 import jsonFormat from "./json.js";
 
 function getFormatFunction(formatName) {
-  if (formatName.format === 'plain') {
+  if (formatName === 'plain') {
     return plainFormat;
   }
-  else if (formatName.format === 'json') {
+  else if (formatName === 'json') {
     return jsonFormat;
   }
   else {
