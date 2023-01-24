@@ -1,10 +1,10 @@
 import stylish from "./stylish.js";
-import plainFormat from "./plain.js";
+import plain from "./plain.js";
 import jsonFormat from "./json.js";
 
 function getFormatFunction(formatName) {
   if (formatName === 'plain') {
-    return plainFormat;
+    return plain;
   }
   else if (formatName === 'json') {
     return jsonFormat;

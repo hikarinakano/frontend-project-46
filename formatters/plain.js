@@ -1,5 +1,10 @@
 import _ from 'lodash';
 
+
+function plain (data) {
+  return plainFormat(data).trim()
+}
+
 function plainFormat(data, parentKey = []) {
   let result = [];
   let lastElem;
@@ -33,7 +38,7 @@ function plainFormat(data, parentKey = []) {
       result = result.concat(plainFormat(elem['value'], fullKey))
     }
   }
-  return result.join('').trim();
+  return result.join('');
 }
 
 
@@ -47,4 +52,4 @@ function formatValue(value) {
   return value;
 }
 
-export default plainFormat;
+export default plain;
