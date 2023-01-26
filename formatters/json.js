@@ -1,5 +1,3 @@
-//import util from 'util';
-
 function jsonFormat(data) {
   return JSON.stringify(data, null, 2);
 }

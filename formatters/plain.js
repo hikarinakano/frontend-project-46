@@ -1,10 +1,5 @@
 import _ from 'lodash';
 
-
-function plain (data) {
-  return plainFormat(data).trim()
-}
-
 function plainFormat(data, parentKey = []) {
   let result = [];
   let lastElem;
@@ -41,7 +36,6 @@ function plainFormat(data, parentKey = []) {
   return result.join('');
 }
 
-
 function formatValue(value) {
   if (value instanceof Object) {
     return '[complex value]';
@@ -50,6 +44,11 @@ function formatValue(value) {
     return `'${value}'`;
   }
   return value;
+}
+
+
+function plain (data) {
+  return plainFormat(data).trim()
 }
 
 export default plain;
