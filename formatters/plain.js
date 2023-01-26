@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 function plainFormat(data, parentKey = []) {
-  const result = [];
+  let result = [];
   let lastElem;
   let groupedData = [];
   for (const elem of data) {
@@ -21,16 +21,16 @@ function plainFormat(data, parentKey = []) {
       result.push(`Property '${fullKey.join('.')}' was updated. From ${formatValue(elem.value)} to ${formatValue(secondElem.value)}\n`);
       continue;
     }
-    if (elem['status'] === 'added') {
+    if (elem.status === 'added') {
 
       result.push(`Property '${fullKey.join('.')}' was added with value: ${formatValue(elem.value)}\n`)
 
     }
-    else if (elem['status'] === 'deleted') {
+    else if (elem.status === 'deleted') {
       result.push(`Property '${fullKey.join('.')}' was removed\n`)
     }
-    if (Array.isArray(elem['value'])) {
-      result = result.concat(plainFormat(elem['value'], fullKey))
+    if (Array.isArray(elem.value)) {
+      result = result.concat(plainFormat(elem.value, fullKey))
     }
   }
   return result.join('');

@@ -4,13 +4,11 @@ import path from 'path';
 function parse(data, filepath) {
   const extension = path.extname(filepath);
   if (extension === '.json') {
-    return JSON.parse(data)
+    return JSON.parse(data);
   }
   if (extension === '.yaml' || extension === '.yml') {
     return yaml.load(data, 'utf8');
   }
-  else {
-    return 'Unsupported format of the file'
-  }
+    return 'Unsupported format of the file';
 }
-export default parse; 
+export default parse;
