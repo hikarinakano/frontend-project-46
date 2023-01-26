@@ -46,7 +46,6 @@ function formatValue(value) {
   return value;
 }
 
-
 function plain (data) {
   return plainFormat(data).trim()
 }

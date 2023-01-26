@@ -1,4 +1,3 @@
-
 function stylish(data) {
   return doStylish(data).join('').trim();
 }
@@ -8,19 +7,19 @@ function doStylish(data, indent = '') {
   let result = ['{\n'];
   for (const elem of data) {
     let key = elem.key;
-    if (elem['status'] === 'unchanged') {
+    if (elem.status === 'unchanged') {
       result.push(`${indent}    ${key}: `)
     }
-    else if (elem['status'] === 'added') {
+    else if (elem.status === 'added') {
       result.push(`${indent}  + ${key}: `)
     }
-    else if (elem['status'] === 'deleted') {
+    else if (elem.status === 'deleted') {
       result.push(`${indent}  - ${key}: `)
     }
-    if (Array.isArray(elem['value'])) {
-      result = result.concat(doStylish(elem['value'], newIndent))
+    if (Array.isArray(elem.value)) {
+      result = result.concat(doStylish(elem.value, newIndent))
     }
-    else { result.push(`${elem['value']}\n`) }
+    else { result.push(`${elem.value}\n`) }
   }
   result.push(`${indent}}\n`);
   return result;

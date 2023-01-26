@@ -23,14 +23,14 @@ function computeDiff(data1, data2) {
     const isVal1Object = data1[key] instanceof Object;
     const isVal2Object = data2[key] instanceof Object;
     if (_.has(data1, key) && _.has(data2, key) && (data1[key] === data2[key] || isVal1Object && isVal2Object)) {
-      result.push({ 'status': 'unchanged', 'key': `${key}`, 'value': computeDiff(data1[key], data2[key]) })
+      result.push({ 'status': 'unchanged', 'key': `${key}`, 'value': computeDiff(data1[key], data2[key]) });
       continue;
     }
     if (_.has(data1, key)) {
-      result.push({ 'status': 'deleted', 'key': `${key}`, 'value': computeDiff(data1[key], data1[key]) })
+      result.push({ 'status': 'deleted', 'key': `${key}`, 'value': computeDiff(data1[key], data1[key]) });
     }
     if (_.has(data2, key)) {
-      result.push({ 'status': 'added', 'key': `${key}`, 'value': computeDiff(data2[key], data2[key]) })
+      result.push({ 'status': 'added', 'key': `${key}`, 'value': computeDiff(data2[key], data2[key]) });
     }
   }
   return result;
