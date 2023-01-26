@@ -7,9 +7,6 @@ make install:
 make lint: # launch npx eslint
 	npx eslint .	
 
-make say-hello: # prints hello world in bash
-	echo "Hello, world!"
-
 make test: # starts tests
 	npm test
 
