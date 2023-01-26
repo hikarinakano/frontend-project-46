@@ -9,6 +9,6 @@ function parse(data, filepath) {
   if (extension === '.yaml' || extension === '.yml') {
     return yaml.load(data, 'utf8');
   }
-    return 'Unsupported format of the file';
+  return 'Unsupported format of the file';
 }
 export default parse;

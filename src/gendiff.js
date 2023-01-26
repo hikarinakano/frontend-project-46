@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import fs from 'fs';
-import parse from '../src/parse.js';
+import parse from './parse.js';
 import getFormatFunction from '../formatters/index.js';
 
 function genDiff(filepath1, filepath2, formatName = 'stylish') {
@@ -17,7 +17,8 @@ function computeDiff(data1, data2) {
   if (!(data2 instanceof Object)) {
     return data2;
   }
-  const keys = Object.keys({ ...data1, ...data2 }).sort();
+  const unsortedKeys = Object.keys({ ...data1, ...data2 });
+  const keys = [...unsortedKeys].sort()
   const result = [];
   for (const key of keys) {
     const isVal1Object = data1[key] instanceof Object;

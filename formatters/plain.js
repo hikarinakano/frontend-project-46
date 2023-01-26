@@ -1,5 +1,15 @@
 import _ from 'lodash';
 
+function formatValue(value) {
+  if (value instanceof Object) {
+    return '[complex value]';
+  }
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
+  return value;
+}
+
 function plainFormat(data, parentKey = []) {
   let result = [];
   let lastElem;
@@ -34,16 +44,6 @@ function plainFormat(data, parentKey = []) {
     }
   }
   return result.join('');
-}
-
-function formatValue(value) {
-  if (value instanceof Object) {
-    return '[complex value]';
-  }
-  if (typeof value === 'string') {
-    return `'${value}'`;
-  }
-  return value;
 }
 
 function plain (data) {
