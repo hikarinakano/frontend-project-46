@@ -1,12 +1,12 @@
 import _ from 'lodash';
 
 function plainFormat(data, parentKey = []) {
-  let result = [];
+  const result = [];
   let lastElem;
   let groupedData = [];
   for (const elem of data) {
     if (lastElem && lastElem.key === elem.key) {
-      _.last(groupedData).push(elem)
+      _.last(groupedData).push(elem);
     } else {
       groupedData.push([elem]);
     }
