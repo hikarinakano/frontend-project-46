@@ -1,28 +1,32 @@
-function stylish(data) {
-  return doStylish(data).join('').trim();
+import _ from 'lodash';
+
+const signMap = {
+  'unchanged': ' ',
+  'added': '+',
+  'deleted': '-'
 }
 
 function doStylish(data, indent = '') {
-  const newIndent = `${indent}    `;
-  let result = ['{\n'];
-  for (const elem of data) {
-    let key = elem.key;
-    if (elem.status === 'unchanged') {
-      result.push(`${indent}    ${key}: `)
-    }
-    else if (elem.status === 'added') {
-      result.push(`${indent}  + ${key}: `)
-    }
-    else if (elem.status === 'deleted') {
-      result.push(`${indent}  - ${key}: `)
-    }
-    if (Array.isArray(elem.value)) {
-      result = result.concat(doStylish(elem.value, newIndent))
-    }
-    else { result.push(`${elem.value}\n`) }
+  if (data.length === 0) {
+    return '';
   }
-  result.push(`${indent}}\n`);
-  return result;
+  const [elem, ...rest] = data;
+  const key = elem.key;
+  const sign = signMap[elem.status];
+  const line = `${indent}  ${sign} ${key}: `;
+  const after = `\n${doStylish(rest, indent)}`;
+
+  if (Array.isArray(elem.value)) {
+    const newIndent = `${indent}    `;
+    return `${line}{\n${doStylish(elem.value, newIndent)}${newIndent}}${after}`;
+  }
+  else {
+    return `${line}${elem.value}${after}`;
+  }
+}
+
+function stylish(data) {
+  return `{\n${doStylish(data)}}`.trim();
 }
 
 export default stylish;
