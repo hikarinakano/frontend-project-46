@@ -1,3 +1,4 @@
+import _ from 'lodash';
 const signMap = {
   unchanged: ' ',
   added: '+',
@@ -8,7 +9,8 @@ function doStylish(data, indent = '') {
   if (data.length === 0) {
     return '';
   }
-  const [elem, ...rest] = data;
+  const rest = _.tail(data);
+  const [elem, ] = data;
   const key = elem.key;
   const sign = signMap[elem.status];
   const line = `${indent}  ${sign} ${key}: `;
@@ -17,7 +19,7 @@ function doStylish(data, indent = '') {
     const newIndent = `${indent}    `;
     return `${line}{\n${doStylish(elem.value, newIndent)}${newIndent}}${after}`;
   }
-    return `${line}${elem.value}${after}`;
+  return `${line}${elem.value}${after}`;
 }
 
 function stylish(data) {
