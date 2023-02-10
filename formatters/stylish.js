@@ -14,7 +14,6 @@ function doStylish(data, indent = '') {
   const sign = signMap[elem.status];
   const line = `${indent}  ${sign} ${key}: `;
   const after = `\n${doStylish(rest, indent)}`;
-
   if (Array.isArray(elem.value)) {
     const newIndent = `${indent}    `;
     return `${line}{\n${doStylish(elem.value, newIndent)}${newIndent}}${after}`;
