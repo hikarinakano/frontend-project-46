@@ -3,27 +3,6 @@ import fs from 'fs';
 import parse from './parse.js';
 import getFormatFunction from '../formatters/index.js';
 
-function doComputeDiff(keys, data1, data2) {
-  if (keys.length === 0) {
-    return [];
-  }
-  const key = _.first(keys);
-  const rest = _.tail(keys);
-  const isVal1Object = data1[key] instanceof Object;
-  const isVal2Object = data2[key] instanceof Object;
-  const restDiffComputed = doComputeDiff(rest, data1, data2);
-  if ((_.has(data1, key) && _.has(data2, key)) && 
-      ((data1[key] === data2[key] || isVal1Object && isVal2Object))) {
-    const obj = { status: 'unchanged', key: `${key}`, value: computeDiff(data1[key], data2[key]) };
-    return [obj].concat(restDiffComputed)
-  }
-  const result = [
-    _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key]) },
-    _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) },
-  ];
-  return _.filter(result, (item) => item instanceof Object).concat(restDiffComputed);
-}
-
 function computeDiff(data1, data2) {
   if (!(data2 instanceof Object)) {
     return data2;
@@ -33,6 +12,26 @@ function computeDiff(data1, data2) {
   const unsortedKeys = _.union(keys1, keys2);
   const keys = _.sortBy(unsortedKeys);
   return doComputeDiff(keys, data1, data2);
+}
+
+function doComputeDiff(keys, data1, data2) {
+  if (keys.length === 0) {
+    return [];
+  }
+  const key = _.first(keys);
+  const rest = _.tail(keys);
+  const isVal1Object = data1[key] instanceof Object;
+  const isVal2Object = data2[key] instanceof Object;
+  const restDiffComputed = doComputeDiff(rest, data1, data2);
+  if ((_.has(data1, key) && _.has(data2, key)) && ((data1[key] === data2[key] || isVal1Object && isVal2Object))) {
+    const obj = { status: 'unchanged', key: `${key}`, value: computeDiff(data1[key], data2[key]) };
+    return [obj].concat(restDiffComputed);
+  }
+  const result = [
+    _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key]) },
+    _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) },
+  ];
+  return _.filter(result, (item) => item instanceof Object).concat(restDiffComputed);
 }
 
 function genDiff(filepath1, filepath2, formatName = 'stylish') {
