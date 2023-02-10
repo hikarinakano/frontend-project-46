@@ -12,7 +12,7 @@ function doStylish(data, indent = '') {
   }
   const rest = _.tail(data);
   const elem = _.first(data);
-  const key = elem.key;
+  const { key } = elem;
   const { status } = elem;
   const sign = signMap[status];
   const line = `${indent}  ${sign} ${key}: `;
