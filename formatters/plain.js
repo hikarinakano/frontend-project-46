@@ -9,10 +9,9 @@ function formatValue(value) {
   }
   return value;
 }
-//use flatmapdeep
+
 function plainFormat(data, parentKey = []) {
   const groupedDataReversed = _.reduce(data, (acc, elem) => {
-    elem.key
     const head = _.head(acc);
     const tail = _.tail(acc);
     if (head) {
@@ -24,7 +23,7 @@ function plainFormat(data, parentKey = []) {
     return [[elem]].concat(acc);
   }, []);
   const groupedData = _.reverse(groupedDataReversed);
-  const textDiffRaw = _.flatMapDeep(groupedData, (group) =>{
+  const textDiffRaw = _.flatMapDeep(groupedData, (group) => {
     const elem = _.head(group);
     const key = elem.key;
     const fullKey = [...parentKey, key];

@@ -11,7 +11,7 @@ function computeDiff(data1, data2) {
   const keys2 = Object.keys(data2);
   const unsortedKeys = _.union(keys1, keys2);
   const keys = _.sortBy(unsortedKeys);
-  return _.flatMap(keys, function (key) {
+  return _.flatMap(keys, function compute(key) {
     const areEqual = data1[key] === data2[key];
     const areObj = data1[key] instanceof Object && data2[key] instanceof Object;
     const haveMutualKey = _.has(data1, key) && _.has(data2, key);
@@ -24,7 +24,7 @@ function computeDiff(data1, data2) {
       _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) },
     ];
     return _.filter(result, (item) => item instanceof Object);
-  })
+  });
 }
 
 function genDiff(filepath1, filepath2, formatName = 'stylish') {
