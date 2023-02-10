@@ -1,9 +1,8 @@
-
 const signMap = {
-  'unchanged': ' ',
-  'added': '+',
-  'deleted': '-'
-}
+  unchanged: ' ',
+  added: '+',
+  deleted: '-',
+};
 
 function doStylish(data, indent = '') {
   if (data.length === 0) {
@@ -18,9 +17,7 @@ function doStylish(data, indent = '') {
     const newIndent = `${indent}    `;
     return `${line}{\n${doStylish(elem.value, newIndent)}${newIndent}}${after}`;
   }
-  else {
     return `${line}${elem.value}${after}`;
-  }
 }
 
 function stylish(data) {
