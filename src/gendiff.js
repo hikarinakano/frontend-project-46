@@ -17,9 +17,10 @@ function computeDiff(data1, data2) {
   if (!(data2 instanceof Object)) {
     return data2;
   }
-  const unsortedKeys = Object.keys({ ...data1, ...data2 });
-  const keys1 = [...unsortedKeys];
-  const keys = keys1.sort();
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const unsortedKeys = _.union(keys1, keys2);
+  const keys = _.sortBy(unsortedKeys);
   const result = [];
   for (const key of keys) {
     const isVal1Object = data1[key] instanceof Object;
