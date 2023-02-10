@@ -21,16 +21,11 @@ function doComputeDiff(keys, data1, data2) {
   const key = _.first(keys);
   const rest = _.tail(keys);
   const restDiffComputed = doComputeDiff(rest, data1, data2);
-  function areEqual(val1, val2) {
-    return val1 === val2;
-  }
-  function areObj(val1, val2) {
-    return val1 instanceof Object && val2 instanceof Object;
-  }
-  function haveMutualKey(data1, data2, key) {
-    return _.has(data1, key) && _.has(data2, key);
-  }
-  if (haveMutualKey(data1, data2, key) && (areEqual(data1[key], data2[key]) || areObj(data1[key], data2[key]))) {
+  const areEqual = data1[key] === data2[key];
+  const areObj = data1[key] instanceof Object && data2[key] instanceof Object;
+  const haveMutualKey = _.has(data1, key) && _.has(data2, key);
+  
+  if (haveMutualKey && (areEqual || areObj)) {
     const obj = { status: 'unchanged', key: `${key}`, value: computeDiff(data1[key], data2[key]) };
     return [obj].concat(restDiffComputed);
   }
