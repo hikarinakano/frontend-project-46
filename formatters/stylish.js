@@ -13,15 +13,16 @@ function doStylish(data, indent = '') {
   const rest = _.tail(data);
   const elem = _.first(data);
   const { key } = elem;
+  const { value } = elem;
   const { status } = elem;
   const sign = signMap[status];
   const line = `${indent}  ${sign} ${key}: `;
   const after = `\n${doStylish(rest, indent)}`;
-  if (Array.isArray(elem.value)) {
+  if (Array.isArray(value)) {
     const newIndent = `${indent}    `;
-    return `${line}{\n${doStylish(elem.value, newIndent)}${newIndent}}${after}`;
+    return `${line}{\n${doStylish(value, newIndent)}${newIndent}}${after}`;
   }
-  return `${line}${elem.value}${after}`;
+  return `${line}${value}${after}`;
 }
 
 function stylish(data) {
