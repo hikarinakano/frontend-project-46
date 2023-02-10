@@ -23,7 +23,7 @@ function computeDiff(data1, data2) {
       _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key]) },
       _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) },
     ];
-    return _.filter(result, (item) => item instanceof Object)
+    return _.filter(result, (item) => item instanceof Object);
   })
 }
 

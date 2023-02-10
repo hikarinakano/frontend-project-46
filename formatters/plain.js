@@ -9,45 +9,40 @@ function formatValue(value) {
   }
   return value;
 }
-
+//use flatmapdeep
 function plainFormat(data, parentKey = []) {
-  let result = [];
-  let lastElem;
-  let groupedData = [];
-  for (const elem of data) {
-    if (lastElem && lastElem.key === elem.key) {
-      _.last(groupedData).push(elem);
-    } else {
-      groupedData.push([elem]);
+  const groupedDataReversed = _.reduce(data, (acc, elem) => {
+    elem.key
+    const head = _.head(acc);
+    const tail = _.tail(acc);
+    if (head) {
+      const lastHead = _.last(head);
+      if (lastHead && lastHead.key === elem.key) {
+        return [head.concat([elem])].concat(tail);
+      }
     }
-    lastElem = elem;
-  }
-  for (const group of groupedData) {
-    const elem = group[0];
+    return [[elem]].concat(acc);
+  }, []);
+  const groupedData = _.reverse(groupedDataReversed);
+  const textDiffRaw = _.flatMapDeep(groupedData, (group) =>{
+    const elem = _.head(group);
     const key = elem.key;
     const fullKey = [...parentKey, key];
     if (group.length === 2) {
-      const secondElem = group[1];
-      result.push(`Property '${fullKey.join('.')}' was updated. From ${formatValue(elem.value)} to ${formatValue(secondElem.value)}\n`);
-      continue;
+      const secondElem = _.last(group);
+      return `Property '${fullKey.join('.')}' was updated. From ${formatValue(elem.value)} to ${formatValue(secondElem.value)}\n`;
     }
-    if (elem.status === 'added') {
-
-      result.push(`Property '${fullKey.join('.')}' was added with value: ${formatValue(elem.value)}\n`)
-
-    }
-    else if (elem.status === 'deleted') {
-      result.push(`Property '${fullKey.join('.')}' was removed\n`)
-    }
-    if (Array.isArray(elem.value)) {
-      result = result.concat(plainFormat(elem.value, fullKey))
-    }
-  }
-  return result.join('');
+    return [
+      elem.status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${formatValue(elem.value)}\n`,
+      elem.status === 'deleted' && `Property '${fullKey.join('.')}' was removed\n`,
+      Array.isArray(elem.value) && plainFormat(elem.value, fullKey),
+    ]
+  })
+  return _.filter(textDiffRaw, (elem) => elem !== false).join('');
 }
 
 function plain (data) {
-  return plainFormat(data).trim()
+  return plainFormat(data).trim();
 }
 
 export default plain;
