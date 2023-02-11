@@ -25,7 +25,7 @@ function plainFormat(data, parentKey = []) {
   const groupedData = _.reverse(groupedDataReversed);
   const textDiffRaw = _.flatMapDeep(groupedData, (group) => {
     const elem = _.head(group);
-    const key = elem.key;
+    const { key } = elem;
     const fullKey = [...parentKey, key];
     if (group.length === 2) {
       const secondElem = _.last(group);
@@ -35,12 +35,12 @@ function plainFormat(data, parentKey = []) {
       elem.status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${formatValue(elem.value)}\n`,
       elem.status === 'deleted' && `Property '${fullKey.join('.')}' was removed\n`,
       Array.isArray(elem.value) && plainFormat(elem.value, fullKey),
-    ]
-  })
+    ];
+  });
   return _.filter(textDiffRaw, (elem) => elem !== false).join('');
 }
 
-function plain (data) {
+function plain(data) {
   return plainFormat(data).trim();
 }
 
