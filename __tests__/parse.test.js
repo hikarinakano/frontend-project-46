@@ -17,5 +17,6 @@ test('yaml file test', () => {
 });
 
 test('wrong path', () => {
-  expect(parse('fileData', 'wrong path')).toEqual('Unsupported format of the file');
+  const data1 = readFile('file1.yml');
+  expect(() => {parse(data1, '/some/wrong/path/file.lol')}).toThrow(Error);
 });
