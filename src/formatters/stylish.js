@@ -10,8 +10,9 @@ function doStylish(data, indent = '') {
   if (data.length === 0) {
     return '';
   }
-  const rest = _.tail(data);
-  const elem = _.first(data);
+  const flattenData = _.flatten(data);
+  const rest = _.tail(flattenData);
+  const elem = _.first(flattenData);
   const { key, value, status } = elem;
   const sign = signMap[status];
   const line = `${indent}  ${sign} ${key}: `;
