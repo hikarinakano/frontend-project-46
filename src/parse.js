@@ -1,14 +1,16 @@
 import yaml from 'js-yaml';
 import path from 'path';
 
-function parse(data, filepath) {
-  const extension = path.extname(filepath);
-  if (extension === '.json') {
-    return JSON.parse(data);
+function parse(rawData, dataSource) {
+  const extension = path.extname(dataSource).substring(1);
+  switch (extension) {
+    case 'json':
+      return JSON.parse(rawData);
+    case 'yaml':
+    case 'yml':
+      return yaml.load(rawData, 'utf8');
+    default:
+      throw new Error(`Unsupported format: ${extension}!`);
   }
-  if (extension === '.yaml' || extension === '.yml') {
-    return yaml.load(data, 'utf8');
-  }
-  return 'Unsupported format of the file';
 }
 export default parse;
