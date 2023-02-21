@@ -1,4 +1,3 @@
-
 import { test, expect } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
@@ -10,7 +9,7 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 test('incorrect format json test', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
-  expect(() => {genDiff(filepath1, filepath2,'plainn')}).toThrow(Error);
+  expect(() => { genDiff(filepath1, filepath2, 'plainn'); }).toThrow(Error);
 });
 
 test('stylish format (default) json test', () => {

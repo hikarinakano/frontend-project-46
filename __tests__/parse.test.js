@@ -18,5 +18,5 @@ test('yaml file test', () => {
 
 test('wrong path', () => {
   const data1 = readFile('file1.yml');
-  expect(() => {parse(data1, '/some/wrong/path/file.lol')}).toThrow(Error);
+  expect(() => { parse(data1, '/some/wrong/path/file.lol'); }).toThrow(Error);
 });
