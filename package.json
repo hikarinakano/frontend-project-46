@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/hikarinakano/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/hikarinakano/frontend-project-46/actions)",
+  "description": "gendiff is a programm that can show differences between .yml/.yaml or .json files with an option of choosing the format of the information shown",
   "main": "./src/gendiff.js",
   "scripts": {
     "test": "jest"
