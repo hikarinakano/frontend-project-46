@@ -11,25 +11,11 @@ function stringify(value) {
 }
 
 function plainFormat(data, parentKey = []) {
-  const groupedDataReversed = _.reduce(data, (acc, elem) => {
-    const head = _.head(acc);
-    const tail = _.tail(acc);
-    if (head) {
-      const lastHead = _.last(head);
-      if (lastHead && lastHead.key === elem.key) {
-        return [head.concat([elem])].concat(tail);
-      }
-    }
-    return [[elem]].concat(acc);
-  }, []);
-  const groupedData = _.reverse(groupedDataReversed);
-  const textDiffRaw = _.flatMapDeep(groupedData, (group) => {
-    const elem = _.head(group);
-    const { key } = elem;
+  const textDiffRaw = _.flatMapDeep(data, (elem) => {
+    const { key } = Array.isArray(elem) ? elem[0] : elem;
     const fullKey = [...parentKey, key];
-    if (group.length === 2) {
-      const secondElem = _.last(group);
-      return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value)} to ${stringify(secondElem.value)}\n`;
+    if (Array.isArray(elem)) {
+      return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem[0].value)} to ${stringify(elem[1].value)}\n`;
     }
     return [
       elem.status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`,
