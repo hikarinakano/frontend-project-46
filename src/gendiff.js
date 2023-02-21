@@ -19,13 +19,13 @@ function computeDiff(data1, data2) {
       const obj = { status: 'unchanged', key: `${key}`, value: computeDiff(data1[key], data2[key]) };
       return obj;
     }
-    const deleted = _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key])}; 
-    const added = _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key])}; 
+    const deleted = _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key]) };
+    const added = _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) };
     if (deleted && added) {
-      return [deleted, added]
+      return [deleted, added];
     }
     if (deleted) {
-      return deleted; 
+      return deleted;
     }
     return added;
   });
