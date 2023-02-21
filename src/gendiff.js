@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import parse from './parse.js';
-import getFormatFunction from '../formatters/index.js';
+import getFormatFunction from './formatters/index.js';
 
 function computeDiff(data1, data2) {
   if (!(data2 instanceof Object)) {
