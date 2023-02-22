@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import fs, { read } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import parse from '../src/parse';
 
