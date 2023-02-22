@@ -36,3 +36,12 @@ $ gendiff -h
 
 <h3> asciinema demo working with big tree structured files with -f flag and without</h3>
 <a href="https://asciinema.org/a/TGg4J1p8aWi1Coq0z3Ju8W0km" target="_blank"><img src="https://asciinema.org/a/TGg4J1p8aWi1Coq0z3Ju8W0km.svg" /></a>
+
+<h3> asciinema demo of 'plain' output type</h3>
+<a href="https://asciinema.org/a/YLss0NZkOUzJpKVFcdZ7vSIBM" target="_blank"><img src="https://asciinema.org/a/YLss0NZkOUzJpKVFcdZ7vSIBM.svg" /></a>
+
+<h3> asciinema demo of 'plain' output type</h3>
+<a href="https://asciinema.org/a/YLss0NZkOUzJpKVFcdZ7vSIBM" target="_blank"><img src="https://asciinema.org/a/YLss0NZkOUzJpKVFcdZ7vSIBM.svg" /></a>
+
+<h3> asciinema demo of 'json' output type</h3>
+<a href="https://asciinema.org/a/Pt1bOymJnYVHkExWJijwmWp5g" target="_blank"><img src="https://asciinema.org/a/Pt1bOymJnYVHkExWJijwmWp5g.svg" /></a>
