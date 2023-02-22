@@ -20,21 +20,21 @@ test('incorrect format json test', () => {
 
 test.each([
   {
-    filepath1: json1, filepath2: json2, formatName: 'plain', expected: plainFormatResult 
+    filepath1: json1, filepath2: json2, formatName: 'plain', expected: plainFormatResult,
   },
   {
-     filepath1: yml1, filepath2: yml2, formatName: 'stylish', expected: stylishFormatResult 
+     filepath1: yml1, filepath2: yml2, formatName: 'stylish', expected: stylishFormatResult,
   },
   {
-     filepath1: yaml1, filepath2: yaml2, expected: stylishFormatResult 
+    filepath1: yaml1, filepath2: yaml2, expected: stylishFormatResult,
   },
-])('stylish format(default) json and yaml test', ({ filepath1, filepath2, formatName, expected }) => {
-  expect(genDiff(filepath1,filepath2, formatName)).toEqual(expected);
+])('stylish format(default) json and yaml test', (
+  { filepath1, filepath2, formatName, expected }
+  ) => {
+  expect(genDiff(filepath1, filepath2, formatName)).toEqual(expected);
 });
 
-
 test('json format yml test', () => {
-
   const data = genDiff(json1, json2, 'json');
   expect(() => JSON.parse(data)).not.toThrow();
 });
