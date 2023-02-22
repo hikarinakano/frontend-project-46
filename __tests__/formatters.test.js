@@ -31,7 +31,7 @@ test.each([
 ])('stylish format(default) json and yaml test', (
   {
     filepath1, filepath2, formatName, expected,
-  }
+  },
 ) => {
   expect(genDiff(filepath1, filepath2, formatName)).toEqual(expected);
 });
