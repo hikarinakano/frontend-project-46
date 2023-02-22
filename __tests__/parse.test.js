@@ -9,9 +9,9 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 test.each([
   { data: readFile('file1.json'), dataSource: 'file1.json' },
   { data: readFile('file1.yml'), dataSource: 'file1.yml' },
-  ])('parse functioning test', ({data, dataSource}) => {
+])('parse functioning test', ({ data, dataSource }) => {
     expect(Object.keys(parse(data, dataSource)).length).not.toBe(0);
-  });
+});
 
 test('wrong path', () => {
   const data = readFile('file1.yml');
