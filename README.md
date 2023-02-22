@@ -24,6 +24,7 @@ $ npm ci
 ```  
 
 <h2>For help and instructions how to use genDiff you need to do:<h2>
+
 ```bash
 $ gendiff -h
 ```  
