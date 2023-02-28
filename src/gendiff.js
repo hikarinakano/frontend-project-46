@@ -2,7 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import parse from './parse.js';
 import path from 'path';
-import getFormatFunction from './formatters/index.js';
+import format from './formatters/index.js';
 
 function computeDiff(data1, data2) {
   if (!(data2 instanceof Object)) {
@@ -40,8 +40,7 @@ function genDiff(filepath1, filepath2, formatName = 'stylish') {
   const data1 = parse(readFile1, type1);
   const data2 = parse(readFile2, type2);
   const diff = computeDiff(data1, data2);
-  const formatter = getFormatFunction(formatName);
-  return formatter(diff);
+  return format(formatName, diff);
 }
 
 export default genDiff;
