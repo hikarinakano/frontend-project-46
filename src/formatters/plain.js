@@ -7,7 +7,7 @@ function stringify(value) {
   if (typeof value === 'string') {
     return `'${value}'`;
   }
-  return value;
+  return `${value}`;
 }
 
 function plainFormat(data, parentKey = []) {
