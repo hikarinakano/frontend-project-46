@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
-import parse from './parse.js';
 import path from 'path';
+import parse from './parse.js';
 import format from './formatters/index.js';
 
 function computeDiff(data1, data2) {
