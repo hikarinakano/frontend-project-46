@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import parse from './parse.js';
+import path from 'path';
 import getFormatFunction from './formatters/index.js';
 
 function computeDiff(data1, data2) {
@@ -16,11 +17,11 @@ function computeDiff(data1, data2) {
     const areObj = data1[key] instanceof Object && data2[key] instanceof Object;
     const haveMutualKey = _.has(data1, key) && _.has(data2, key);
     if (haveMutualKey && (areEqual || areObj)) {
-      const obj = { status: 'unchanged', key: `${key}`, value: computeDiff(data1[key], data2[key]) };
+      const obj = { status: 'unchanged', key, value: computeDiff(data1[key], data2[key]) };
       return obj;
     }
-    const deleted = _.has(data1, key) && { status: 'deleted', key: `${key}`, value: computeDiff(data1[key], data1[key]) };
-    const added = _.has(data2, key) && { status: 'added', key: `${key}`, value: computeDiff(data2[key], data2[key]) };
+    const deleted = _.has(data1, key) && { status: 'deleted', key, value: computeDiff(data1[key], data1[key]) };
+    const added = _.has(data2, key) && { status: 'added', key, value: computeDiff(data2[key], data2[key]) };
     if (deleted && added) {
       return [deleted, added];
     }
@@ -34,8 +35,10 @@ function computeDiff(data1, data2) {
 function genDiff(filepath1, filepath2, formatName = 'stylish') {
   const readFile1 = fs.readFileSync(filepath1, 'utf-8');
   const readFile2 = fs.readFileSync(filepath2, 'utf-8');
-  const data1 = parse(readFile1, filepath1);
-  const data2 = parse(readFile2, filepath2);
+  const type1 = path.extname(filepath1).substring(1);
+  const type2 = path.extname(filepath2).substring(1);
+  const data1 = parse(readFile1, type1);
+  const data2 = parse(readFile2, type2);
   const diff = computeDiff(data1, data2);
   const formatter = getFormatFunction(formatName);
   return formatter(diff);
