@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "gendiff is a programm that can show differences between .yml/.yaml or .json files with an option of choosing the format of the information shown",
-  "main": "./src/gendiff.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
