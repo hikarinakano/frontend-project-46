@@ -4,6 +4,7 @@ const signMap = {
   unchanged: ' ',
   added: '+',
   deleted: '-',
+  changed: '',
 };
 
 function doStylish(data, indent = '') {
