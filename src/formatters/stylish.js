@@ -1,19 +1,18 @@
 import _ from 'lodash';
+import replaceChanged from './replaceChanged.js';
 
 const signMap = {
   unchanged: ' ',
   added: '+',
-  deleted: '-',
-  changed: '',
+  deleted: '-'
 };
 
 function doStylish(data, indent = '') {
   if (data.length === 0) {
     return '';
   }
-  const flattenData = _.flatten(data);
-  const rest = _.tail(flattenData);
-  const elem = _.first(flattenData);
+  const rest = _.tail(data);
+  const elem = _.first(data);
   const { key, value, status } = elem;
   const sign = signMap[status];
   const line = `${indent}  ${sign} ${key}: `;
@@ -26,7 +25,7 @@ function doStylish(data, indent = '') {
 }
 
 function stylish(data) {
-  return `{\n${doStylish(data)}}`.trim();
+  return `{\n${doStylish(replaceChanged(data))}}`.trim();
 }
 
 export default stylish;
