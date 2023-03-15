@@ -8,7 +8,7 @@ const signMap = {
 };
 
 function indent(depth) {
-  const spaces = '    '
+  const spaces = '    ';
   return spaces.repeat(depth);
 }
 
