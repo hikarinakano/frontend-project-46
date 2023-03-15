@@ -3,8 +3,8 @@ function replaceChanged(data) {
     if (elem.status === 'changed') {
       return [
         { status: 'deleted', key: elem.key, value: elem.value1 },
-        { status: 'added', key: elem.key, value: elem.value2 }
-      ]
+        { status: 'added', key: elem.key, value: elem.value2 },
+      ];
     }
     return elem;
   }).map((elem) => {
