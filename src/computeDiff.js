@@ -24,7 +24,7 @@ function computeDiff(data1, data2) {
       return { status: 'unchanged', key, value: computeDiff(data1[key], data2[key]) };
     }
     return {
-      status: 'changed', key, value1: computeDiff(data1[key], data1[key]), value2: computeDiff(data2[key], data2[key])
+      status: 'changed', key, value1: computeDiff(data1[key], data1[key]), value2: computeDiff(data2[key], data2[key]),
     };
   });
 }
