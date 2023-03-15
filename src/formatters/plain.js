@@ -12,12 +12,12 @@ function stringify(value) {
 
 function plainFormat(data, parentKey = []) {
   const textDiffRaw = _.flatMapDeep(data, (elem) => {
-    const { key } = elem;
+    const { key, status } = elem;
     const fullKey = [...parentKey, key];
     return [
-      elem.status === 'changed' && `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`,
-      elem.status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`,
-      elem.status === 'deleted' && `Property '${fullKey.join('.')}' was removed\n`,
+      status === 'changed' && `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`,
+      status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`,
+      status === 'deleted' && `Property '${fullKey.join('.')}' was removed\n`,
       Array.isArray(elem.value) && plainFormat(elem.value, fullKey),
     ];
   });

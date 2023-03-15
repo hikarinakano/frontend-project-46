@@ -7,7 +7,12 @@ const signMap = {
   deleted: '-',
 };
 
-function doStylish(data, indent = '') {
+function indent(depth) {
+  const spaces = '    '
+  return spaces.repeat(depth);
+}
+
+function doStylish(data, depth = 0) {
   if (data.length === 0) {
     return '';
   }
@@ -15,11 +20,10 @@ function doStylish(data, indent = '') {
   const elem = _.first(data);
   const { key, value, status } = elem;
   const sign = signMap[status];
-  const line = `${indent}  ${sign} ${key}: `;
-  const after = `\n${doStylish(rest, indent)}`;
+  const line = `${indent(depth)}  ${sign} ${key}: `;
+  const after = `\n${doStylish(rest, depth)}`;
   if (Array.isArray(value)) {
-    const newIndent = `${indent}    `;
-    return `${line}{\n${doStylish(value, newIndent)}${newIndent}}${after}`;
+    return `${line}{\n${doStylish(value, depth + 1)}${indent(depth + 1)}}${after}`;
   }
   return `${line}${value}${after}`;
 }
@@ -29,4 +33,3 @@ function stylish(data) {
 }
 
 export default stylish;
-
