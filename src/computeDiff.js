@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 function isObj(structure) {
-  return structure instanceof Object
+  return structure instanceof Object;
 }
 
 function computeDiff(data1, data2) {
@@ -24,7 +24,9 @@ function computeDiff(data1, data2) {
     if (areEqual || areObj) {
       return { status: 'unchanged', key, value: computeDiff(data1[key], data2[key]) };
     }
-    return { status: 'changed', key, value1: computeDiff(data1[key], data1[key]), value2: computeDiff(data2[key], data2[key]) };
+    return {
+       status: 'changed', key, value1: computeDiff(data1[key], data1[key]), value2: computeDiff(data2[key], data2[key])
+    };
   });
 }
 
