@@ -1,15 +1,29 @@
 function replaceChanged(data) {
   return data.flatMap((elem) => {
-    if (elem.status === 'changed') {
+    const {status, key} = elem;
+    if (status === 'changed') {
       return [
-        { status: 'deleted', key: elem.key, value: elem.value1 },
-        { status: 'added', key: elem.key, value: elem.value2 },
+        {
+          status: 'deleted',
+          key,
+          value: elem.value1,
+        },
+        {
+          status: 'added',
+          key,
+          value: elem.value2,
+        },
       ];
     }
     return elem;
   }).map((elem) => {
-    if (Array.isArray(elem.value)) {
-      return { status: elem.status, key: elem.key, value: replaceChanged(elem.value) };
+    const {status, key, value} = elem;
+    if (Array.isArray(value)) {
+      return {
+        status,
+        key,
+        value: replaceChanged(value),
+      };
     }
     return elem;
   });

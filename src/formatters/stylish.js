@@ -4,7 +4,7 @@ import replaceChanged from './replaceChanged.js';
 const signMap = {
   unchanged: ' ',
   added: '+',
-  deleted: '-'
+  deleted: '-',
 };
 
 function doStylish(data, indent = '') {
@@ -29,3 +29,4 @@ function stylish(data) {
 }
 
 export default stylish;
+
