@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import replaceChanged from './replaceChanged.js';
+import replaceChanged from '../replaceChanged.js';
 
 const signMap = {
   unchanged: ' ',
@@ -29,4 +29,3 @@ function stylish(data) {
 }
 
 export default stylish;
-
