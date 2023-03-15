@@ -29,3 +29,21 @@ function stylish(data) {
 }
 
 export default stylish;
+
+/*function striingify(value, replacer = ' ', spacesCount = 1) {
+  const iter = (currentVal, depth) => {
+    if (typeof currentVal !== 'object' || currentVal === null) {
+      return String(currentVal);
+    }
+    const indentSize = depth * spacesCount;
+    const currentIndent = replacer.repeat(indentSize);
+    const bracketIndent = replacer.repeat(indentSize - spacesCount);
+
+    const currentValToArray = Object.entries(currentVal);
+    const lines = currentValToArray.map(([key, val]) => `${currentIndent}${key}: ${iter(val, depth + 1)}`);
+    const result = ['{', ...lines, `${bracketIndent}}`].join('\n');
+
+    return result;
+  };
+  return iter(value, 1);
+}*/
