@@ -20,7 +20,7 @@ function computeDiff(data1, data2) {
       };
     }
     if (!_.has(data2, key)) {
-      return { 
+      return {
         status: 'deleted',
         key,
         value: computeDiff(data1[key], data1[key]),
@@ -36,10 +36,10 @@ function computeDiff(data1, data2) {
       };
     }
     return {
-        status: 'changed',
-        key,
-        value1: computeDiff(data1[key], data1[key]),
-        value2: computeDiff(data2[key], data2[key]),
+      status: 'changed',
+      key,
+      value1: computeDiff(data1[key], data1[key]),
+      value2: computeDiff(data2[key], data2[key]),
     };
   });
 }
