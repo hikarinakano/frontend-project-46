@@ -7,21 +7,26 @@ function stringify(value) {
   if (typeof value === 'string') {
     return `'${value}'`;
   }
-  return `${value}`;
+  return String(value);
 }
 
 function plainFormat(data, parentKey = []) {
   const textDiffRaw = _.flatMapDeep(data, (elem) => {
     const { key, status } = elem;
     const fullKey = [...parentKey, key];
-    return [
-      status === 'changed' && `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`,
-      status === 'added' && `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`,
-      status === 'deleted' && `Property '${fullKey.join('.')}' was removed\n`,
-      Array.isArray(elem.value) && plainFormat(elem.value, fullKey),
-    ];
+    switch (status) {
+      case 'changed':
+        return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`;
+      case 'added':
+        return `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`;
+      case 'deleted':
+        return `Property '${fullKey.join('.')}' was removed\n`;
+      case 'unchanged':
+        return plainFormat(elem.value, fullKey);
+    }
   });
-  return _.filter(textDiffRaw, (elem) => elem !== false).join('');
+
+  return textDiffRaw.join('');
 }
 
 function plain(data) {
