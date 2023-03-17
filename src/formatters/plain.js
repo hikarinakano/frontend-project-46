@@ -14,16 +14,16 @@ function plainFormat(data, parentKey = []) {
   const textDiffRaw = _.flatMapDeep(data, (elem) => {
     const { key, status } = elem;
     const fullKey = [...parentKey, key];
-    switch (status) {
-      case 'changed':
-        return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`;
-      case 'added':
-        return `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`;
-      case 'deleted':
-        return `Property '${fullKey.join('.')}' was removed\n`;
-      case 'unchanged':
-        return plainFormat(elem.value, fullKey);
+    if (status === 'changed') {
+      return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`;
     }
+    if (status === 'added') {
+      return `Property '${fullKey.join('.')}' was added with value: ${stringify(elem.value)}\n`;
+    }
+    if (status === 'deleted') {
+      return `Property '${fullKey.join('.')}' was removed\n`;
+    }
+    return plainFormat(elem.value, fullKey);
   });
 
   return textDiffRaw.join('');
