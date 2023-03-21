@@ -1,0 +1,30 @@
+[
+  {
+    "status": "read",
+    "key": "group3",
+    "value": [
+      {
+        "status": "status",
+        "key": "deep",
+        "value": [
+          {
+            "status": "unchanged",
+            "key": "id",
+            "value": [
+              {
+                "status": "unchanged",
+                "key": "number",
+                "value": 45
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "status": "unchanged",
+        "key": "fee",
+        "value": 100500
+      }
+    ]
+  }
+]

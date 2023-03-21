@@ -1,6 +1,7 @@
 import { test, expect } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
+import format from '../src/formatters';
 import genDiff from '../src/gendiff';
 
 const getFixturePath = (filename) => path.join('__fixtures__', filename);
@@ -13,9 +14,14 @@ const yml1 = getFixturePath('file1.yml');
 const yml2 = getFixturePath('file2.yml');
 const yaml1 = getFixturePath('file1.yaml');
 const yaml2 = getFixturePath('file2.yaml');
+const wrongGenDiff = readFile('wrong_gendiff.json');
 
 test('incorrect format json test', () => {
   expect(() => { genDiff(json1, json2, 'plainn'); }).toThrow(Error);
+});
+
+test('incorrect status test', () => {
+  expect(() => { format('plain', wrongGenDiff); }).toThrow(Error);
 });
 
 test.each([
