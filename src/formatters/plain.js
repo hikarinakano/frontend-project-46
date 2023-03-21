@@ -20,16 +20,13 @@ function plainFormat(data, parentKey = []) {
       case 'deleted':
         return `Property '${fullKey.join('.')}' was removed\n`;
       case 'changed':
-        return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`;  
+        return `Property '${fullKey.join('.')}' was updated. From ${stringify(elem.value1)} to ${stringify(elem.value2)}\n`;
       case 'unchanged':
-      return (elem.value instanceof Object ? plainFormat(elem.value, fullKey) : '');
+        return (elem.value instanceof Object ? plainFormat(elem.value, fullKey) : '');
       default:
-        throw new Error(`Error! status: ${ status } with key: ${ key } in ${ elem } is not valid!`);
-        
+        throw new Error(`Error! status: ${status} with key: ${key} in ${elem} is not valid!`); 
     }
-    
   });
-
   return textDiffRaw.join('');
 }
 
