@@ -24,7 +24,7 @@ function plainFormat(data, parentKey = []) {
       case 'unchanged':
         return (elem.value instanceof Object ? plainFormat(elem.value, fullKey) : '');
       default:
-        throw new Error(`Error! status: ${status} with key: ${key} in ${elem} is not valid!`); 
+        throw new Error(`Error! status: ${status} with key: ${key} in ${elem} is not valid!`);
     }
   });
   return textDiffRaw.join('');
